@@ -1,5 +1,5 @@
 #!/bin/bash
-for B in J K; do
+for B in J K L; do
   L=logs/queue_$B.log
   d=$(grep -c ' DONE ' $L 2>/dev/null); f=$(grep -c ' FAILED ' $L 2>/dev/null)
   r=$(( $(grep -c ' start ' $L 2>/dev/null) - d - f ))

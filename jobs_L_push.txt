@@ -1,0 +1,15 @@
+vitb32_TA8_dac_dd_sc1.6-2.0|clip-vit-base-patch32|TA8|dacmerge|0|method.alpha_first=0.7 method.alpha_last=0.3 method.scale_first=1.6 method.scale_last=2.0
+vitb32_TA8_dac_dd_sc1.4-2.2|clip-vit-base-patch32|TA8|dacmerge|0|method.alpha_first=0.7 method.alpha_last=0.3 method.scale_first=1.4 method.scale_last=2.2
+vitb32_TA8_dac_dd_sc1.2-2.4|clip-vit-base-patch32|TA8|dacmerge|0|method.alpha_first=0.7 method.alpha_last=0.3 method.scale_first=1.2 method.scale_last=2.4
+vitb32_TA8_dac_dd_sc1.6-2.4|clip-vit-base-patch32|TA8|dacmerge|0|method.alpha_first=0.7 method.alpha_last=0.3 method.scale_first=1.6 method.scale_last=2.4
+vitb32_TA8_dac_sc1.4-1.8|clip-vit-base-patch32|TA8|dacmerge|0|method.scale_first=1.4 method.scale_last=1.8
+vitb32_TA8_dac_dd_sc1.6-2.0|clip-vit-base-patch32|TA8|dacmerge|1|method.alpha_first=0.7 method.alpha_last=0.3 method.scale_first=1.6 method.scale_last=2.0
+vitb32_TA8_dac_dd_sc1.4-2.2|clip-vit-base-patch32|TA8|dacmerge|1|method.alpha_first=0.7 method.alpha_last=0.3 method.scale_first=1.4 method.scale_last=2.2
+vitb32_TA8_dac_dd_sc1.2-2.4|clip-vit-base-patch32|TA8|dacmerge|1|method.alpha_first=0.7 method.alpha_last=0.3 method.scale_first=1.2 method.scale_last=2.4
+vitb32_TA8_dac_dd_sc1.6-2.4|clip-vit-base-patch32|TA8|dacmerge|1|method.alpha_first=0.7 method.alpha_last=0.3 method.scale_first=1.6 method.scale_last=2.4
+vitb32_TA8_dac_sc1.4-1.8|clip-vit-base-patch32|TA8|dacmerge|1|method.scale_first=1.4 method.scale_last=1.8
+vitb32_TA8_dac_dd_sc1.6-2.0|clip-vit-base-patch32|TA8|dacmerge|2|method.alpha_first=0.7 method.alpha_last=0.3 method.scale_first=1.6 method.scale_last=2.0
+vitb32_TA8_dac_dd_sc1.4-2.2|clip-vit-base-patch32|TA8|dacmerge|2|method.alpha_first=0.7 method.alpha_last=0.3 method.scale_first=1.4 method.scale_last=2.2
+vitb32_TA8_dac_dd_sc1.2-2.4|clip-vit-base-patch32|TA8|dacmerge|2|method.alpha_first=0.7 method.alpha_last=0.3 method.scale_first=1.2 method.scale_last=2.4
+vitb32_TA8_dac_dd_sc1.6-2.4|clip-vit-base-patch32|TA8|dacmerge|2|method.alpha_first=0.7 method.alpha_last=0.3 method.scale_first=1.6 method.scale_last=2.4
+vitb32_TA8_dac_sc1.4-1.8|clip-vit-base-patch32|TA8|dacmerge|2|method.scale_first=1.4 method.scale_last=1.8
