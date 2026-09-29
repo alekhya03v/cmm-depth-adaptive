@@ -1,0 +1,13 @@
+vitb32_TA8_bud_global_sanity|clip-vit-base-patch32|TA8|dacbudget|0|method.budget=global
+vitb32_TA8_bud_layer|clip-vit-base-patch32|TA8|dacbudget|0|method.budget=layer
+vitb32_TA8_bud_layer_dd|clip-vit-base-patch32|TA8|dacbudget|0|method.budget=layer method.alpha_first=0.7 method.alpha_last=0.3
+vitb32_TA8_bud_param_dd|clip-vit-base-patch32|TA8|dacbudget|0|method.budget=param method.alpha_first=0.7 method.alpha_last=0.3
+vitb32_TA8_bud_layer_dd_sc1.2-1.6|clip-vit-base-patch32|TA8|dacbudget|0|method.budget=layer method.alpha_first=0.7 method.alpha_last=0.3 method.scale_first=1.2 method.scale_last=1.6
+vitb32_TA8_bud_layer|clip-vit-base-patch32|TA8|dacbudget|1|method.budget=layer
+vitb32_TA8_bud_layer_dd|clip-vit-base-patch32|TA8|dacbudget|1|method.budget=layer method.alpha_first=0.7 method.alpha_last=0.3
+vitb32_TA8_bud_param_dd|clip-vit-base-patch32|TA8|dacbudget|1|method.budget=param method.alpha_first=0.7 method.alpha_last=0.3
+vitb32_TA8_bud_layer_dd_sc1.2-1.6|clip-vit-base-patch32|TA8|dacbudget|1|method.budget=layer method.alpha_first=0.7 method.alpha_last=0.3 method.scale_first=1.2 method.scale_last=1.6
+vitb32_TA8_bud_layer|clip-vit-base-patch32|TA8|dacbudget|2|method.budget=layer
+vitb32_TA8_bud_layer_dd|clip-vit-base-patch32|TA8|dacbudget|2|method.budget=layer method.alpha_first=0.7 method.alpha_last=0.3
+vitb32_TA8_bud_param_dd|clip-vit-base-patch32|TA8|dacbudget|2|method.budget=param method.alpha_first=0.7 method.alpha_last=0.3
+vitb32_TA8_bud_layer_dd_sc1.2-1.6|clip-vit-base-patch32|TA8|dacbudget|2|method.budget=layer method.alpha_first=0.7 method.alpha_last=0.3 method.scale_first=1.2 method.scale_last=1.6
