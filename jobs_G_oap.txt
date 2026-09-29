@@ -1,0 +1,15 @@
+vitb32_TA8_cap_oap_b0.3|clip-vit-base-patch32|TA8|capmerge|0|method.alpha_schedule=overlap method.overlap_beta=0.3
+vitb32_TA8_cap_oap_b0.3|clip-vit-base-patch32|TA8|capmerge|1|method.alpha_schedule=overlap method.overlap_beta=0.3
+vitb32_TA8_cap_oap_b0.3|clip-vit-base-patch32|TA8|capmerge|2|method.alpha_schedule=overlap method.overlap_beta=0.3
+vitb32_TA8_cap_oap_b0.3|clip-vit-base-patch32|TA8|capmerge|3|method.alpha_schedule=overlap method.overlap_beta=0.3
+vitb32_TA8_cap_oap_b0.3|clip-vit-base-patch32|TA8|capmerge|4|method.alpha_schedule=overlap method.overlap_beta=0.3
+vitb32_TA8_cap_oap_b0.5|clip-vit-base-patch32|TA8|capmerge|0|method.alpha_schedule=overlap method.overlap_beta=0.5
+vitb32_TA8_cap_oap_b0.5|clip-vit-base-patch32|TA8|capmerge|1|method.alpha_schedule=overlap method.overlap_beta=0.5
+vitb32_TA8_cap_oap_b0.5|clip-vit-base-patch32|TA8|capmerge|2|method.alpha_schedule=overlap method.overlap_beta=0.5
+vitb32_TA8_cap_oap_b0.5|clip-vit-base-patch32|TA8|capmerge|3|method.alpha_schedule=overlap method.overlap_beta=0.5
+vitb32_TA8_cap_oap_b0.5|clip-vit-base-patch32|TA8|capmerge|4|method.alpha_schedule=overlap method.overlap_beta=0.5
+vitb32_TA8_cap_oap_b1.0|clip-vit-base-patch32|TA8|capmerge|0|method.alpha_schedule=overlap method.overlap_beta=1.0
+vitb32_TA8_cap_oap_b1.0|clip-vit-base-patch32|TA8|capmerge|1|method.alpha_schedule=overlap method.overlap_beta=1.0
+vitb32_TA8_cap_oap_b1.0|clip-vit-base-patch32|TA8|capmerge|2|method.alpha_schedule=overlap method.overlap_beta=1.0
+vitb32_TA8_cap_oap_b1.0|clip-vit-base-patch32|TA8|capmerge|3|method.alpha_schedule=overlap method.overlap_beta=1.0
+vitb32_TA8_cap_oap_b1.0|clip-vit-base-patch32|TA8|capmerge|4|method.alpha_schedule=overlap method.overlap_beta=1.0

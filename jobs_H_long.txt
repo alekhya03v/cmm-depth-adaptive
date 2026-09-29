@@ -1,0 +1,12 @@
+vitb32_TALL20_opcm|clip-vit-base-patch32|TALL20|capmerge|0|
+vitb32_TALL20_cap_depthdown|clip-vit-base-patch32|TALL20|capmerge|0|method.alpha_schedule=linear method.alpha_first=0.7 method.alpha_last=0.3
+vitb32_TALL20_opcm|clip-vit-base-patch32|TALL20|capmerge|1|
+vitb32_TALL20_cap_depthdown|clip-vit-base-patch32|TALL20|capmerge|1|method.alpha_schedule=linear method.alpha_first=0.7 method.alpha_last=0.3
+vitb32_TALL20_opcm|clip-vit-base-patch32|TALL20|capmerge|2|
+vitb32_TALL20_cap_depthdown|clip-vit-base-patch32|TALL20|capmerge|2|method.alpha_schedule=linear method.alpha_first=0.7 method.alpha_last=0.3
+vitb32_TALL14_opcm|clip-vit-base-patch32|TALL14|capmerge|0|
+vitb32_TALL14_cap_depthdown|clip-vit-base-patch32|TALL14|capmerge|0|method.alpha_schedule=linear method.alpha_first=0.7 method.alpha_last=0.3
+vitb32_TALL14_opcm|clip-vit-base-patch32|TALL14|capmerge|1|
+vitb32_TALL14_cap_depthdown|clip-vit-base-patch32|TALL14|capmerge|1|method.alpha_schedule=linear method.alpha_first=0.7 method.alpha_last=0.3
+vitb32_TALL14_opcm|clip-vit-base-patch32|TALL14|capmerge|2|
+vitb32_TALL14_cap_depthdown|clip-vit-base-patch32|TALL14|capmerge|2|method.alpha_schedule=linear method.alpha_first=0.7 method.alpha_last=0.3

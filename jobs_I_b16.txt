@@ -1,0 +1,10 @@
+vitb16_TA8_opcm|clip-vit-base-patch16|TA8|capmerge|0|
+vitb16_TA8_cap_depthdown|clip-vit-base-patch16|TA8|capmerge|0|method.alpha_schedule=linear method.alpha_first=0.7 method.alpha_last=0.3
+vitb16_TA8_opcm|clip-vit-base-patch16|TA8|capmerge|1|
+vitb16_TA8_cap_depthdown|clip-vit-base-patch16|TA8|capmerge|1|method.alpha_schedule=linear method.alpha_first=0.7 method.alpha_last=0.3
+vitb16_TA8_opcm|clip-vit-base-patch16|TA8|capmerge|2|
+vitb16_TA8_cap_depthdown|clip-vit-base-patch16|TA8|capmerge|2|method.alpha_schedule=linear method.alpha_first=0.7 method.alpha_last=0.3
+vitb16_TA8_opcm|clip-vit-base-patch16|TA8|capmerge|3|
+vitb16_TA8_cap_depthdown|clip-vit-base-patch16|TA8|capmerge|3|method.alpha_schedule=linear method.alpha_first=0.7 method.alpha_last=0.3
+vitb16_TA8_opcm|clip-vit-base-patch16|TA8|capmerge|4|
+vitb16_TA8_cap_depthdown|clip-vit-base-patch16|TA8|capmerge|4|method.alpha_schedule=linear method.alpha_first=0.7 method.alpha_last=0.3

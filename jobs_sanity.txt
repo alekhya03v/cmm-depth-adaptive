@@ -1,0 +1,1 @@
+vitb32_TA8_cap_sanity|clip-vit-base-patch32|TA8|capmerge|0|

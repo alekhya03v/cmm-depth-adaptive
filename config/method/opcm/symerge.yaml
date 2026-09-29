@@ -1,0 +1,10 @@
+_target_: fusion_bench.method.opcm.symerge.SyMergeForCLIP
+alpha: 0.5
+keep_synergy: true
+gamma: 1.0
+margin: 0.0
+log_diagnostics: true
+shuffle_order: true
+seed: null
+save_on_every_step: false
+evaluate_on_every_step: true
