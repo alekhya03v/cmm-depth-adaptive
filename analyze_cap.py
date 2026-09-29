@@ -9,11 +9,11 @@ def run_stats(d):
     bwt = np.mean([(R[-1][names[k]]["accuracy"] - R[k][names[k]]["accuracy"]) * 100 for k in range(T-1)])
     kept = None
     if os.path.exists(f"{d}/diagnostics.json"):
-        kept = np.mean([r["retained_energy"] for r in json.load(open(f"{d}/diagnostics.json"))]) * 100
+        kept = np.nanmean([r.get("retained_energy", np.nan) for r in json.load(open(f"{d}/diagnostics.json"))]) * 100
     return acc, bwt, kept
 
 base = {int(v.split("_")[-1]): run_stats(v) for v in glob.glob("outputs/cmm/vitb32_TA8_symerge_keep-false/version_*")}
-exps = ["opcm_ref"] + sorted(os.path.basename(p) for p in glob.glob("outputs/cmm/vitb32_TA8_cap_*"))
+exps = ["opcm_ref"] + sorted(os.path.basename(p) for p in glob.glob("outputs/cmm/vitb32_TA8_cap_*") + glob.glob("outputs/cmm/vitb32_TA8_dac_*"))
 print(f"{'variant':30s} {'orders':>6s} {'ACC':>7s} {'vs OPCM (same orders)':>22s} {'BWT':>6s} {'% new task kept':>16s}")
 for e in exps:
     if e == "opcm_ref":

@@ -1,0 +1,12 @@
+_target_: fusion_bench.method.opcm.dacmerge.DACMergeForCLIP
+alpha: 0.5
+alpha_first: 0.5
+alpha_last: 0.5
+scale_first: 1.0
+scale_last: 1.0
+num_layers: 12
+log_diagnostics: true
+shuffle_order: true
+seed: null
+save_on_every_step: false
+evaluate_on_every_step: true
