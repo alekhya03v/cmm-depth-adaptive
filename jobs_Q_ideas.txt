@@ -1,0 +1,8 @@
+vitb32_TA8_dac_best_keepcross|clip-vit-base-patch32|TA8|dac3merge|0|method.alpha_first=0.7 method.alpha_last=0.3 method.scale_first=1.2 method.scale_last=2.4 method.proj_mode=keepcross
+vitb32_TA8_dac_best_keepcrossh|clip-vit-base-patch32|TA8|dac3merge|0|method.alpha_first=0.7 method.alpha_last=0.3 method.scale_first=1.2 method.scale_last=2.4 method.proj_mode=keepcross_h
+vitb32_TA8_dac_best_lnpre|clip-vit-base-patch32|TA8|dac3merge|0|method.alpha_first=0.7 method.alpha_last=0.3 method.scale_first=1.2 method.scale_last=2.4 method.ln_mode=pre
+vitb32_TA8_dac_best_lnhalf|clip-vit-base-patch32|TA8|dac3merge|0|method.alpha_first=0.7 method.alpha_last=0.3 method.scale_first=1.2 method.scale_last=2.4 method.ln_mode=half
+vitb32_TA8_dac_best_keepcross|clip-vit-base-patch32|TA8|dac3merge|1|method.alpha_first=0.7 method.alpha_last=0.3 method.scale_first=1.2 method.scale_last=2.4 method.proj_mode=keepcross
+vitb32_TA8_dac_best_keepcrossh|clip-vit-base-patch32|TA8|dac3merge|1|method.alpha_first=0.7 method.alpha_last=0.3 method.scale_first=1.2 method.scale_last=2.4 method.proj_mode=keepcross_h
+vitb32_TA8_dac_best_lnpre|clip-vit-base-patch32|TA8|dac3merge|1|method.alpha_first=0.7 method.alpha_last=0.3 method.scale_first=1.2 method.scale_last=2.4 method.ln_mode=pre
+vitb32_TA8_dac_best_lnhalf|clip-vit-base-patch32|TA8|dac3merge|1|method.alpha_first=0.7 method.alpha_last=0.3 method.scale_first=1.2 method.scale_last=2.4 method.ln_mode=half

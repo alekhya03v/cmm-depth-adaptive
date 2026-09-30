@@ -14,4 +14,7 @@
 | Rejected | Reintroduce aligned overlap | -4.11 | -6.9 | 5 | -4.3 -4.3 -5.4 -2.7 -3.8 |
 | Rejected | Retention floor 0.95 | -1.61 | -7.4 | 3 | -1.9 -1.0 -1.9 |
 | Rejected | Overlap-adaptive α | -0.67 | -6.2 | 5 | -0.9 -1.3 -0.7 +0.2 -0.6 |
-| Component A | DAC + keep cross terms | +1.33 | -9.9 | 1 | +1.3 |
+| Component A | DAC + keep cross terms | +0.80 | -9.9 | 2 | +1.3 +0.3 |
+| Component A | DAC + keep half cross terms | +2.73 | -8.3 | 2 | +3.2 +2.3 |
+| Component B | DAC + LayerNorm pretrained | +3.66 | -7.0 | 2 | +4.1 +3.2 |
+| Component B | DAC + LayerNorm half | +3.65 | -7.1 | 2 | +4.1 +3.2 |

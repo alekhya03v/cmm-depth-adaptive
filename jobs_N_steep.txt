@@ -1,0 +1,6 @@
+vitb32_TA8_dac_dd_sc1.0-2.6|clip-vit-base-patch32|TA8|dacmerge|0|method.alpha_first=0.7 method.alpha_last=0.3 method.scale_first=1.0 method.scale_last=2.6
+vitb32_TA8_dac_dd_sc0.8-2.8|clip-vit-base-patch32|TA8|dacmerge|0|method.alpha_first=0.7 method.alpha_last=0.3 method.scale_first=0.8 method.scale_last=2.8
+vitb32_TA8_dac_dd_sc1.0-2.6|clip-vit-base-patch32|TA8|dacmerge|1|method.alpha_first=0.7 method.alpha_last=0.3 method.scale_first=1.0 method.scale_last=2.6
+vitb32_TA8_dac_dd_sc0.8-2.8|clip-vit-base-patch32|TA8|dacmerge|1|method.alpha_first=0.7 method.alpha_last=0.3 method.scale_first=0.8 method.scale_last=2.8
+vitb32_TA8_dac_dd_sc1.0-2.6|clip-vit-base-patch32|TA8|dacmerge|2|method.alpha_first=0.7 method.alpha_last=0.3 method.scale_first=1.0 method.scale_last=2.6
+vitb32_TA8_dac_dd_sc0.8-2.8|clip-vit-base-patch32|TA8|dacmerge|2|method.alpha_first=0.7 method.alpha_last=0.3 method.scale_first=0.8 method.scale_last=2.8
