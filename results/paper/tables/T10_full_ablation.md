@@ -1,0 +1,17 @@
+| Group | Variant | vs OPCM | BWT | Orders | Per order |
+|---|---|---|---|---|---|
+| Protection | Depth-down α 0.7→0.3 | +0.30 | -6.2 | 5 | +0.3 +0.4 +0.0 +0.5 +0.3 |
+| Protection | Depth-up α 0.3→0.7 | -0.67 | -5.8 | 3 | -0.9 -0.7 -0.4 |
+| Strength | Uniform ×1.4 | +1.45 | -6.8 | 3 | +2.0 +1.7 +0.7 |
+| Strength | Uniform ×2.0 | +1.74 | -8.1 | 3 | +2.6 +2.2 +0.4 |
+| Strength | Late layers 1.4→1.8 | +2.19 | -7.2 | 3 | +2.9 +2.5 +1.1 |
+| Both | Depth-down + ×1.4 | +1.77 | -6.8 | 3 | +2.5 +2.0 +0.8 |
+| Both | Depth-down + 1.2→1.6 | +2.23 | -6.7 | 3 | +3.1 +2.3 +1.3 |
+| Both | Depth-down + 1.4→2.2 | +2.71 | -7.5 | 3 | +3.9 +3.0 +1.2 |
+| Both | Depth-down + 1.2→2.4 (DAC-Merge) | +2.89 | -7.5 | 3 | +4.1 +3.2 +1.4 |
+| Budget | Per-layer budget (automatic) | +0.65 | -5.0 | 3 | +0.7 +0.6 +0.7 |
+| Budget | Per-layer budget + depth-down | +0.79 | -5.0 | 3 | +0.9 +0.9 +0.6 |
+| Rejected | Reintroduce aligned overlap | -4.11 | -6.9 | 5 | -4.3 -4.3 -5.4 -2.7 -3.8 |
+| Rejected | Retention floor 0.95 | -1.61 | -7.4 | 3 | -1.9 -1.0 -1.9 |
+| Rejected | Overlap-adaptive α | -0.67 | -6.2 | 5 | -0.9 -1.3 -0.7 +0.2 -0.6 |
+| Component A | DAC + keep cross terms | +1.33 | -9.9 | 1 | +1.3 |

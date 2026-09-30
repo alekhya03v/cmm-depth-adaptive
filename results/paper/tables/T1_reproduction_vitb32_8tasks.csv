@@ -1,0 +1,5 @@
+Method,Paper ACC,Our ACC,Paper BWT,Our BWT,Orders
+OPCM,75.5 ± 0.5,75.3 ± 0.4,-6.3 ± 1.1,-6.2 ± 1.1,5
+C. Task Arithmetic,67.5 ± 0.0,67.6 ± 0.0,-9.6 ± 1.5,-9.6 ± 1.3,5
+Weight Averaging,66.3 ± 0.0,66.3 ± 0.0,-11.5 ± 2.2,-12.2 ± 1.3,5
+C. TIES-Merging,49.0 ± 10.2,49.5 ± 5.7,-15.3 ± 8.0,-14.5 ± 6.1,5
