@@ -1,0 +1,7 @@
+# endsem pilot, seed 0 (B/32, 8 tasks). Baseline first, then soft mask and 2D schedule.
+vitb32_TA8_dacbase_0.6-3.0|clip-vit-base-patch32|TA8|dacmerge|0|method.alpha_first=0.7 method.alpha_last=0.3 method.scale_first=0.6 method.scale_last=3.0
+vitb32_TA8_soft_0.10|clip-vit-base-patch32|TA8|dacsoft|0|method.softness=0.10
+vitb32_TA8_soft_0.25|clip-vit-base-patch32|TA8|dacsoft|0|method.softness=0.25
+vitb32_TA8_soft_0.50|clip-vit-base-patch32|TA8|dacsoft|0|method.softness=0.50
+vitb32_TA8_2d_g-0.4|clip-vit-base-patch32|TA8|dac2d|0|method.gamma=-0.4
+vitb32_TA8_2d_g+0.4|clip-vit-base-patch32|TA8|dac2d|0|method.gamma=0.4

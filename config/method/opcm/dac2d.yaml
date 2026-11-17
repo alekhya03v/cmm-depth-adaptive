@@ -1,0 +1,14 @@
+_target_: fusion_bench.method.opcm.dac2d.DAC2DForCLIP
+alpha: 0.5
+alpha_first: 0.7
+alpha_last: 0.3
+scale_first: 0.6
+scale_last: 3.0
+gamma: 0.0
+num_tasks: 8
+num_layers: 12
+log_diagnostics: true
+shuffle_order: true
+seed: null
+save_on_every_step: false
+evaluate_on_every_step: true
