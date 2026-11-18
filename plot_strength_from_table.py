@@ -19,6 +19,6 @@ for x,y,s,l in pts:
     b.annotate(f"{l}\n{y:.2f}",(x,y),xytext=(0,9),textcoords="offset points",ha="center",fontsize=9,color=K)
 b.set_xlim(-0.3,2.65); b.set_xlabel("Tilt = s(layer 11) - s(layer 0), average fixed at 1.8"); b.set_ylabel("Accuracy, %")
 for ax in (a,b): ax.spines[["top","right"]].set_visible(False); ax.grid(axis="y",color="#e6e5e0"); ax.set_axisbelow(True); ax.set_ylim(74.8,79.1)
-fig.suptitle("Strength sweep, ViT-B/32, 8 tasks, mean of 3 orders (T9)",x=0.06,ha="left",fontsize=12)
+fig.suptitle("Strength sweep, ViT-B/32, 8 tasks, mean of 3 orders",x=0.06,ha="left",fontsize=12)
 fig.tight_layout(rect=(0,0,1,0.95)); fig.savefig("results/paper/figs/F12_strength_sweep.png")
 print(U,D)
