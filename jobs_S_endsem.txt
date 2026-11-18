@@ -5,3 +5,4 @@ vitb32_TA8_soft_0.25|clip-vit-base-patch32|TA8|dacsoft|0|method.softness=0.25
 vitb32_TA8_soft_0.50|clip-vit-base-patch32|TA8|dacsoft|0|method.softness=0.50
 vitb32_TA8_2d_g-0.4|clip-vit-base-patch32|TA8|dac2d|0|method.gamma=-0.4
 vitb32_TA8_2d_g+0.4|clip-vit-base-patch32|TA8|dac2d|0|method.gamma=0.4
+vitb32_TA8_soft_0.00|clip-vit-base-patch32|TA8|dacsoft|0|method.softness=0.0

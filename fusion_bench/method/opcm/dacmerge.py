@@ -52,7 +52,7 @@ class DACMergeForCLIP(OPCMForCLIP):
         P = u.T @ task_tv @ v
         total_e = task_tv.pow(2).sum()
         removed_e = P[:split_rank, :split_rank].pow(2).sum()
-        P.diag().fill_(0)                       # kept verbatim from OPCM
+        P.diag().fill_(0)                       
         P[:split_rank, :split_rank] = 0
         cleaned = (u @ P @ v.T) * sc
 
