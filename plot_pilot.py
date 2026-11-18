@@ -11,7 +11,7 @@ for f in sorted(glob.glob("outputs/cmm/*/version_0/report_7.json")):
     if name in SKIP:
         continue
     runs[name] = json.load(open(f))
-tasks = [k for k in runs[BASE] if k != "average"]
+tasks = [k for k, v in runs[BASE].items() if k != "average" and isinstance(v, dict) and "accuracy" in v]
 summary = {n: {"average": r["average"]["accuracy"] * 100,
                **{t: r[t]["accuracy"] * 100 for t in tasks}} for n, r in runs.items()}
 os.makedirs("results", exist_ok=True)
