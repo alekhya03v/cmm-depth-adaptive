@@ -1,0 +1,3 @@
+vitb32_TA8_grid_o0|clip-vit-base-patch32|TA8|p2mem_grid|0|
+vitb32_TA8_grid_o1|clip-vit-base-patch32|TA8|p2mem_grid|1|
+vitb32_TA8_grid_o2|clip-vit-base-patch32|TA8|p2mem_grid|2|
