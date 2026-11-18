@@ -24,6 +24,5 @@ b.set_xlabel("Tilt = s(layer 11) - s(layer 0), average 1.8"); b.set_ylabel("Accu
 b.set_title("A steeper slope helps, then flattens",loc="left",fontsize=10.5)
 for ax in (a,b): ax.spines[["top","right"]].set_visible(False); ax.grid(axis="y",color="#e6e5e0"); ax.set_axisbelow(True); ax.set_ylim(74.8,78.9)
 fig.suptitle("Strength sweep, ViT-B/32, 8 tasks, mean of 3 orders (T9)",x=0.06,ha="left",fontsize=12)
-fig.text(0.06,0.01,"Hollow marker = 0.6→3.0 taken from slide 10, no saved run behind it",fontsize=8.5,color=K)
-fig.tight_layout(rect=(0,0.03,1,0.95)); fig.savefig("results/paper/figs/F12_strength_sweep.png")
+fig.tight_layout(rect=(0,0,1,0.95)); fig.savefig("results/paper/figs/F12_strength_sweep.png")
 print(U,D)
