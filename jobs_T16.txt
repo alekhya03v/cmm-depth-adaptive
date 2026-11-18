@@ -1,0 +1,1 @@
+vitb32_TALL14_r64_o0|clip-vit-base-patch32|TALL14|p2mem_x3|0|
