@@ -1,9 +1,7 @@
 """
-DAC-Soft: DAC-Merge with a SOFT projection mask (endsem extension #4).
-OPCM/DAC remove the new task's component inside the top-r singular subspace of the
-merged model with a hard cut (r from alpha). Here the keep-weight of direction i is
-    w_i = sigmoid((r - i - 0.5) / (softness * r))
-and the block P_ij is scaled by (1 - w_i * w_j). softness = 0 -> exactly DAC-Merge (hard cut).
+DAC-Soft: DAC-Merge with a SOFT projection mask (endsem extension).
+Keep-weight of direction i: w_i = sigmoid((r - i - 0.5) / (softness * r)); the coefficient
+P_ij is scaled by (1 - w_i * w_j). softness = 0 -> exactly DAC-Merge (hard block cut).
 """
 import torch
 from torch import Tensor
@@ -11,15 +9,14 @@ from .dacmerge import DACMergeForCLIP
 from .utils import svd
 
 
-def soft_keep_mask(split_rank: int, n: int, softness: float, device):
-    """Return (mask, w): mask_ij = 1 - w_i w_j. softness -> 0 gives the hard block cut."""
-    idx = torch.arange(n, device=device, dtype=torch.float32)
-    if softness <= 0:
-        w = (idx < split_rank).float()
-    else:
+def soft_keep_mask(split_rank: int, nrows: int, ncols: int, softness: float, device) -> Tensor:
+    def keep(n):
+        idx = torch.arange(n, device=device, dtype=torch.float32)
+        if softness <= 0:
+            return (idx < split_rank).float()
         t = max(softness * max(split_rank, 1), 1e-6)
-        w = torch.sigmoid((split_rank - idx - 0.5) / t)
-    return 1.0 - torch.outer(w, w), w
+        return torch.sigmoid((split_rank - idx - 0.5) / t)
+    return 1.0 - torch.outer(keep(nrows), keep(ncols))
 
 
 class DACSoftForCLIP(DACMergeForCLIP):
@@ -40,11 +37,10 @@ class DACSoftForCLIP(DACMergeForCLIP):
         u, s, v = svd(prev)
         split_rank = (s.cumsum(dim=0) / s.sum() > a).float().argmax().item()
         P = u.T @ task_tv @ v
-        mask, w = soft_keep_mask(split_rank, P.shape[0], self.softness, P.device)
-        if P.shape[0] != P.shape[1]:            # safety: non-square coefficient block
-            mask = mask[:, :P.shape[1]] if mask.shape[1] >= P.shape[1] else torch.ones_like(P)
+        mask = soft_keep_mask(split_rank, P.shape[0], P.shape[1], self.softness, P.device)
         total_e = task_tv.pow(2).sum()
         removed_e = (P.pow(2) * (1.0 - mask)).sum()
+        P.diag().fill_(0)                       # as in OPCM / DAC-Merge (a no-op in PyTorch)
         P = P * mask
         cleaned = (u @ P @ v.T) * sc
 

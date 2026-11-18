@@ -1,0 +1,3 @@
+vitb32_TA8_soft2_0.10|clip-vit-base-patch32|TA8|dacsoft|0|method.softness=0.10
+vitb32_TA8_soft2_0.25|clip-vit-base-patch32|TA8|dacsoft|0|method.softness=0.25
+vitb32_TA8_soft2_0.50|clip-vit-base-patch32|TA8|dacsoft|0|method.softness=0.50
