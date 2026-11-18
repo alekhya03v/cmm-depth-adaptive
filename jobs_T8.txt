@@ -1,0 +1,2 @@
+vitb32_TA8_memE_o1|clip-vit-base-patch32|TA8|p2mem_endsem|1|
+vitb32_TA8_memE_o2|clip-vit-base-patch32|TA8|p2mem_endsem|2|

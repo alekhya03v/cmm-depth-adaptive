@@ -1,0 +1,16 @@
+_target_: fusion_bench.method.opcm.p2mem.P2MemForCLIP
+alpha: 0.5
+mem_settings: "none,res:4:16,resE:4:16,resA:4:16,resEA:4:16,res:8:16,resE:8:16,resA:8:16,resEA:8:16,dis:16:1.0,dis:64:1.0"
+res_k_max: 12
+max_rank: 64
+tall_lams: "0.2,0.4"
+alpha_first: 0.7
+alpha_last: 0.3
+scale_first: 1.2
+scale_last: 2.4
+num_layers: 12
+log_diagnostics: false
+shuffle_order: true
+seed: null
+save_on_every_step: false
+evaluate_on_every_step: false

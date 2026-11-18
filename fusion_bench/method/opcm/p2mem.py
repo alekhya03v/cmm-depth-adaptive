@@ -23,7 +23,7 @@ class P2MemForCLIP(DACMergeForCLIP):
         return int(m.group(1)) if m else None
 
     def _lowrank(self, d):
-        U, S, Vh = torch.linalg.svd(d, full_matrices=False)
+        U, S, Vh = [x.cpu() for x in torch.linalg.svd(d.cuda(), full_matrices=False)]
         r = min(self.max_rank, S.numel())
         return U[:, :r].clone(), S[:r].clone(), Vh[:r].clone()
 
@@ -78,6 +78,21 @@ class P2MemForCLIP(DACMergeForCLIP):
                     delta = e[1]
                     mem += delta.numel()
                 params[n].data = (pre[n] + delta).to(params[n].device, params[n].dtype)
+        elif parts[0] in ("resE", "resA", "resEA"):
+            k, r = int(parts[1]), int(parts[2])
+            rk = self._alloc(i, parts[0][3:], k, r)
+            lay = {self._layer(n) for n, v in rk.items() if v > 0}
+            for n, e in self._res.get(i, {}).items():
+                if e[0] == "lr" and rk.get(n, 0) > 0:
+                    U, S, Vh, q = e[1], e[2], e[3], rk[n]
+                    delta = (U[:, :q] * S[:q]) @ Vh[:q]
+                    mem += q * (U.shape[0] + Vh.shape[1] + 1)
+                elif e[0] == "full" and self._layer(n) in lay:
+                    delta = e[1]
+                    mem += delta.numel()
+                else:
+                    continue
+                params[n].data = (pre[n] + delta).to(params[n].device, params[n].dtype)
         elif parts[0] == "dis":
             r, g = int(parts[1]), float(parts[2])
             for n, (U, S, Vh) in self._dis.get(i, {}).items():
@@ -93,6 +108,28 @@ class P2MemForCLIP(DACMergeForCLIP):
                 new = pre[n] + mk.float() * (cur - pre[n])
                 params[n].data = new.to(params[n].device, params[n].dtype)
         return mem
+
+    def _alloc(self, i, mode, k, r):
+        ents = {n: e for n, e in self._res.get(i, {}).items() if e[0] == "lr"}
+        last = {n for n in ents if self._layer(n) >= self.num_layers - k}
+        c = lambda e: e[1].shape[0] + e[3].shape[1] + 1
+        budget = sum(r * c(ents[n]) for n in last)
+        if mode == "E":
+            sc = {}
+            for n, e in ents.items():
+                sc[self._layer(n)] = sc.get(self._layer(n), 0) + float((e[2][:r] ** 2).sum())
+            top = set(sorted(sc, key=sc.get, reverse=True)[:k])
+            return {n: min(r, ents[n][2].numel()) for n in ents if self._layer(n) in top}
+        pool = ents if mode == "EA" else {n: ents[n] for n in last}
+        items = [(float(s) ** 2 / c(e), n, c(e)) for n, e in pool.items() for s in e[2]]
+        items.sort(reverse=True)
+        rk, used = {}, 0
+        for g, n, cc in items:
+            if used + cc > budget:
+                continue
+            rk[n] = rk.get(n, 0) + 1
+            used += cc
+        return rk
 
     @torch.no_grad()
     def run(self, modelpool):
