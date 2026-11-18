@@ -1,0 +1,1 @@
+vitb16_TA8_memE_o1|clip-vit-base-patch16|TA8|p2mem_b16|1|
