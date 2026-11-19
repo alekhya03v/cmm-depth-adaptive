@@ -1,0 +1,2 @@
+vitb32_TA8_ctrl_o0|clip-vit-base-patch32|TA8|p2mem_ctrl|0|
+vitb32_TA8_ctrl_o1|clip-vit-base-patch32|TA8|p2mem_ctrl|1|

@@ -78,7 +78,7 @@ class P2MemForCLIP(DACMergeForCLIP):
                     delta = e[1]
                     mem += delta.numel()
                 params[n].data = (pre[n] + delta).to(params[n].device, params[n].dtype)
-        elif parts[0] in ("resE", "resA", "resEA"):
+        elif parts[0] in ("resE", "resA", "resEA", "resEN"):
             k, r = int(parts[1]), int(parts[2])
             rk = self._alloc(i, parts[0][3:], k, r)
             lay = {self._layer(n) for n, v in rk.items() if v > 0}
@@ -87,11 +87,24 @@ class P2MemForCLIP(DACMergeForCLIP):
                     U, S, Vh, q = e[1], e[2], e[3], rk[n]
                     delta = (U[:, :q] * S[:q]) @ Vh[:q]
                     mem += q * (U.shape[0] + Vh.shape[1] + 1)
-                elif e[0] == "full" and self._layer(n) in lay:
+                elif e[0] == "full" and self._layer(n) in lay and parts[0] != "resEN":
                     delta = e[1]
                     mem += delta.numel()
                 else:
                     continue
+                params[n].data = (pre[n] + delta).to(params[n].device, params[n].dtype)
+        elif parts[0] == "resB":
+            k, r = int(parts[1]), int(parts[2])
+            for n, e in self._res.get(i, {}).items():
+                if e[0] == "lr":
+                    if self._layer(n) < self.num_layers - k:
+                        continue
+                    U, S, Vh = e[1], e[2], e[3]
+                    delta = (U[:, :r] * S[:r]) @ Vh[:r]
+                    mem += r * (U.shape[0] + Vh.shape[1] + 1)
+                else:
+                    delta = e[1]
+                    mem += delta.numel()
                 params[n].data = (pre[n] + delta).to(params[n].device, params[n].dtype)
         elif parts[0] == "dis":
             r, g = int(parts[1]), float(parts[2])
@@ -120,7 +133,7 @@ class P2MemForCLIP(DACMergeForCLIP):
                 sc[self._layer(n)] = sc.get(self._layer(n), 0) + float((e[2][:r] ** 2).sum())
             top = set(sorted(sc, key=sc.get, reverse=True)[:k])
             return {n: min(r, ents[n][2].numel()) for n in ents if self._layer(n) in top}
-        pool = ents if mode == "EA" else {n: ents[n] for n in last}
+        pool = ents if mode in ("EA", "EN") else {n: ents[n] for n in last}
         items = [(float(s) ** 2 / c(e), n, c(e)) for n, e in pool.items() for s in e[2]]
         items.sort(reverse=True)
         rk, used = {}, 0
