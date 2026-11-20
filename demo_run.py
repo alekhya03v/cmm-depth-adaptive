@@ -179,6 +179,27 @@ def main():
             if re.search(r"Traceback|Error", line):
                 say(RED + "  !! " + line[:200] + END)
     p.wait()
+    if key == "gem":
+        try:
+            import glob, json
+            f = glob.glob(f"outputs/cmm/{name}/version_*/p2_results.json")[0]
+            d = json.load(open(f))
+            say(""); say(BOLD + YEL + "MEMORY PHASE  -  GEM memory stored for each task (budget of k=4, r=16)" + END)
+            for sk, v in d.items():
+                acc = float(v["average"]) * 100; pct = float(v["memory_per_task_pct"])
+                nums = pct / 100 * 87_456_000; mb = nums * 4 / 1e6
+                say(f"  Memory stored per task : {pct:.2f}% of the model  =  {nums:,.0f} numbers  =  {mb:.1f} MB (fp32)")
+                say(f"  Memory for all 8 tasks : {8*pct:.1f}% of one model  =  {8*mb:.1f} MB   (8 full fine-tuned models = 2,669 MB)")
+                task_accs = {k: x for k, x in v.items() if k in NAMES}
+                for k, x in task_accs.items():
+                    x = float(x["accuracy"] if isinstance(x, dict) else x) * 100
+                    say(f"     {nm(k):10s} {x:6.2f}")
+                if last_avg is not None:
+                    say(f"  DAC-Merge backbone alone : {last_avg:.2f}%")
+                say(BOLD + GREEN + f"  GEM = DAC-Merge + memory : {acc:.2f}%" + END)
+                last_avg = acc
+        except Exception as e:
+            say(RED + f"  (could not read the memory results: {e})" + END)
     mins = (time.time() - t0) / 60
     say("")
     if last_avg is not None:
