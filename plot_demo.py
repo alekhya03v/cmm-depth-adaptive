@@ -21,7 +21,7 @@ def steps_from_log(path):
             d[k] = float(v) * 100
             if k == "average": break
         if "average" in d: out.append(d)
-    return out
+    return out[:8]
 
 def load(key):
     p = f"logs/demo2_B32_TA8_{key}_raw.log"
@@ -29,11 +29,13 @@ def load(key):
 
 zs = load("zeroshot"); opcm = load("opcm"); dac = load("dac"); gem_bb = load("gem")
 zs_avg = zs[-1]["average"] if zs else None
-gem_acc = gem_mem = None
+gem_acc = gem_mem = None; gem_task = {}
 f = glob.glob("outputs/cmm/demo2_B32_TA8_gem/version_*/p2_results.json")
 if f:
     v = list(json.load(open(f[0])).values())[0]
     gem_acc, gem_mem = float(v["average"]) * 100, float(v["memory_per_task_pct"])
+    gem_task = {k: float(x) * 100 for k, x in v.get("per_task", {}).items()}
+    if gem_task: gem_task["average"] = gem_acc
 
 C = {"zs": "#6b7280", "opcm": "#2563eb", "dac": "#ea580c", "gem": "#059669"}
 plt.rcParams.update({"font.size": 12, "axes.spines.top": False, "axes.spines.right": False})
@@ -68,7 +70,7 @@ for key, data, title in [("opcm", opcm, "OPCM"), ("dac", dac, "DAC-Merge")]:
 
 # ---- Figure 3: final per-task accuracy ------------------------------------------------
 sets = [("Zero-shot", zs[-1] if zs else None, C["zs"]), ("OPCM", opcm[-1] if opcm else None, C["opcm"]),
-        ("DAC-Merge", dac[-1] if dac else None, C["dac"])]
+        ("DAC-Merge", dac[-1] if dac else None, C["dac"]), ("GEM (DAC-Merge + memory)", gem_task or None, C["gem"])]
 sets = [s for s in sets if s[1]]
 if sets:
     keys = [k for k in sets[0][1] if k != "average"] + ["average"]
@@ -77,7 +79,7 @@ if sets:
         ax.bar([j + i * w for j in range(len(keys))], [d.get(k, 0) for k in keys], w, label=lab, color=col)
     ax.set_xticks([j + w * (len(sets) - 1) / 2 for j in range(len(keys))])
     ax.set_xticklabels([NAMES.get(k, "AVERAGE") for k in keys]); ax.set_ylabel("Accuracy after the final merge (%)")
-    ax.set_title("Final accuracy per task"); ax.legend(frameon=False, loc="upper center", bbox_to_anchor=(0.5, -0.1), ncol=3); ax.grid(axis="y", alpha=0.25)
+    ax.set_title("Final accuracy per task"); ax.legend(frameon=False, loc="upper center", bbox_to_anchor=(0.5, -0.1), ncol=4); ax.grid(axis="y", alpha=0.25)
     fig.tight_layout(); fig.savefig(f"{OUT}/fig3_final_per_task.png", dpi=200, bbox_inches="tight"); plt.close(fig)
 
 print("saved to", OUT); print(sorted(os.listdir(OUT)))
