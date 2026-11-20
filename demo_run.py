@@ -183,8 +183,8 @@ def main():
     say("")
     if last_avg is not None:
         say(GREEN + BOLD + "=" * 100 + END)
-        say(GREEN + BOLD + f"  ✔  {LABEL[key]} DONE" + END)
-        say(GREEN + BOLD + f"  Final average accuracy on 8 tasks: {last_avg:.2f}%     |     time taken: {mins:.1f} min" + END)
+        say(GREEN + BOLD + f"  {LABEL[key]} DONE" + END)
+        say(GREEN + BOLD + f"  Final average accuracy on 8 tasks: {last_avg:.2f}%" + END)
         say(GREEN + BOLD + "=" * 100 + END)
     else:
         say(RED + BOLD + f"  ✘  {LABEL[key]} FINISHED WITHOUT A RESULT - see logs/{name}_raw.log" + END)
