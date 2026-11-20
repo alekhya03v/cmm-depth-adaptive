@@ -94,14 +94,23 @@ def main():
     step, first_acc, last_avg, buf, collecting, announced_eval = 0, {}, None, "", False, False
     seen, pending, want_name, last_live = [], b"", False, 0.0
     done_ds = set()
+    gem_phase, gem_res = [False], [0]
     cur = [None, "..."]
     def finish_ds():
+        if key == "gem":
+            cur[0] = None; return
         if cur[0] is not None and cur[0] not in done_ds:
-            done_ds.add(cur[0]); say(f"     \u2714 {nm(cur[0]):10s} accuracy ~{cur[1]}   ({len(done_ds)} dataset(s) done)")
+            done_ds.add(cur[0]); say(f"     {nm(cur[0]):10s} accuracy ~{cur[1]}   ({len(done_ds)} dataset(s) done)")
         cur[0] = None
     say(DIM + "Starting... loading pretrained CLIP and the fine-tuned checkpoints (first load can take a minute)." + END)
     def new_task(task):
         nonlocal step, announced_eval
+        if key == "gem" and step >= 8:
+            if not gem_phase[0]:
+                gem_phase[0] = True
+                say(""); say(BOLD + YEL + "MEMORY PHASE  -  all 8 tasks are merged. Now each task's low-rank memory is built," + END)
+                say("  the model is rebuilt for that task (merged weights + its memory) and tested on that task only." + "")
+            return
         step += 1; announced_eval = False; seen.append(task); t = nm(task); finish_ds(); done_ds.clear()
         say(""); say(BOLD + YEL + f"STEP {step}/8  -  new task arrives: {t}" + END)
         if step == 1:
@@ -142,6 +151,12 @@ def main():
                     pairs = re.findall(r"'([^']+)':\s*\{\s*'accuracy':\s*([0-9.eE-]+)", buf)
                     accs = {k: float(v) * 100 for k, v in pairs}
                     avg = accs.pop("average", None)
+                    if key == "gem":
+                        gem_res[0] += 1
+                        if gem_res[0] <= 8:
+                            for k, x in accs.items():
+                                say(GREEN + f"     {nm(k):10s} tested with its own memory: {x:6.2f}%" + END)
+                        continue
                     say(GREEN + (f"  Accuracy after step {step}:" if key != "zeroshot" else "  Accuracy of pretrained CLIP:") + END)
                     for k, v in accs.items():
                         first_acc.setdefault(k, v); drop = v - first_acc[k]
@@ -169,12 +184,12 @@ def main():
             if line.startswith("Evaluating tasks"):
                 if not announced_eval:
                     announced_eval = True
-                    say(DIM + (f"  Testing the merged model on the {len(seen)} task(s) seen so far..." if key != "zeroshot"
+                    if key != "gem": say(DIM + (f"  Testing the merged model on the {len(seen)} task(s) seen so far..." if key != "zeroshot"
                                else "Testing pretrained CLIP on the 8 tasks...") + END)
                 if mp and int(mp.group(1)) > 0:
                     finish_ds()
                 continue
-            if key == "gem" and re.search(r"memory|resEA|p2_results|rank", line, re.I):
+            if key == "gem" and "[p2mem]" in line:
                 say(DIM + "  [memory] " + line[:160] + END)
             if re.search(r"Traceback|Error", line):
                 say(RED + "  !! " + line[:200] + END)
@@ -184,7 +199,7 @@ def main():
             import glob, json
             f = glob.glob(f"outputs/cmm/{name}/version_*/p2_results.json")[0]
             d = json.load(open(f))
-            say(""); say(BOLD + YEL + "MEMORY PHASE  -  GEM memory stored for each task (budget of k=4, r=16)" + END)
+            say(""); say(BOLD + YEL + "MEMORY STORED  -  GEM (budget of k=4, r=16)" + END)
             for sk, v in d.items():
                 acc = float(v["average"]) * 100; pct = float(v["memory_per_task_pct"])
                 nums = pct / 100 * 87_456_000; mb = nums * 4 / 1e6
@@ -194,8 +209,12 @@ def main():
                 for k, x in task_accs.items():
                     x = float(x["accuracy"] if isinstance(x, dict) else x) * 100
                     say(f"     {nm(k):10s} {x:6.2f}")
-                if last_avg is not None:
-                    say(f"  DAC-Merge backbone alone : {last_avg:.2f}%")
+                try:
+                    tx = open("logs/demo2_B32_TA8_dac_raw.log", encoding="utf-8", errors="ignore").read()
+                    av = re.findall(r"'average':\s*\{\s*'accuracy':\s*([0-9.eE-]+)", re.sub(r"\s+", " ", tx))
+                    if av: say(f"  DAC-Merge alone (from the previous run) : {float(av[-1])*100:.2f}%")
+                except Exception:
+                    pass
                 say(BOLD + GREEN + f"  GEM = DAC-Merge + memory : {acc:.2f}%" + END)
                 last_avg = acc
         except Exception as e:
